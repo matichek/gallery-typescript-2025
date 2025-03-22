@@ -1,0 +1,185 @@
+/* Modern Neomorphic Style for Gallery */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@layer components {
+  :root {
+    --primary: #6d5dfc;
+    --radius-md: 12px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background-color: #f4f4f4;
+    color: #444;
+    padding: 30px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 4em;
+    margin-top: 2em;
+    font-weight: 300;
+    color: #222;
+    font-size: 2.5rem;
+    
+  }
+
+  #gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .thumbnail {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-md);
+    background: #f4f4f4;
+    box-shadow: inset 1px 1px 1px 0 rgb(255,255,255),
+                inset -1px -1px 1px 0 rgba(0,0,0,.15),
+                .444584px .444584px .628737px -1px rgba(0,0,0,.26),
+                1.21072px 1.21072px 1.71222px -1.5px rgba(0,0,0,.247),
+                2.6583px 2.6583px 3.75941px -2.25px rgba(0,0,0,.23),
+                5.90083px 5.90083px 8.34503px -3px rgba(0,0,0,.192),
+                10px 10px 21.2132px -3.75px rgba(0,0,0,.056),
+                -.5px -.5px 0 0 rgb(0 0 0/5%);
+    overflow: hidden;
+    transition: box-shadow .3s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .thumbnail:hover {
+    box-shadow: inset 1px 1px 1px #ffffffd4,
+                inset -1px -1px 1px #0000003b,
+                .444584px .444584px .628737px -1px #00000042,
+                1.21072px 1.21072px 1.71222px -1.5px #0000003f,
+                2.6583px 2.6583px 3.75941px -2.25px #0000003b,
+                5.90083px 5.90083px 8.34503px -3px #00000031,
+                10px 10px 21.2132px -3.75px #0000003b,
+                -.5px -.5px #0000001a;
+  }
+
+  .thumbnail:active {
+    box-shadow: inset .5px .5px 1px #fff,
+                inset -.5px -.5px 1px #00000026,
+                .222px .222px .314px -.5px #0003,
+                .605px .605px .856px -1px #0000002e,
+                1.329px 1.329px 1.88px -1.5px #00000040,
+                2.95px 2.95px 4.172px -2px #0000001a,
+                2.5px 2.5px 3px -2.5px #00000026,
+                -.5px -.5px 0 0 rgb(0 0 0/10%);
+  }
+
+  .thumbnail img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Pulsating placeholder effect */
+  .thumbnail img[src*="placeholder"] {
+    background: linear-gradient(90deg, #eaeaea, #f4f4f4, #eaeaea);
+    background-size: 200% 100%;
+    animation: pulse 1.5s ease-in-out infinite;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+  
+  @keyframes pulse {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 0%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .user-info {
+    padding: 20px;
+  }
+
+  .user-info h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+  }
+
+  .user-info p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .user-info a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .user-info a:hover {
+    color: #8abdff;
+    text-decoration: underline;
+  }
+
+  .company-info {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: var(--radius-md);
+    background: #f4f4f4;
+    box-shadow: inset .5px .5px 1px #fff,
+                inset -.5px -.5px 1px #00000026,
+                .222px .222px .314px -.5px #0003,
+                .605px .605px .856px -1px #0000002e,
+                1.329px 1.329px 1.88px -1.5px #00000040,
+                2.95px 2.95px 4.172px -2px #0000001a;
+  }
+
+  .company-info h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* LED indicator if needed */
+  .led-indicator {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    background-color: rgba(0,0,0,.1);
+    box-shadow: inset 1px 1px 2px #0000001c,0 1px 0 0 #ffffff30;
+    transition: background-color .15s ease;
+  }
+  
+  .led-indicator.active {
+    background: var(--primary);
+  }
+
+  @media (max-width: 768px) {
+    #gallery {
+      grid-template-columns: 1fr;
+    }
+    
+    body {
+      padding: 15px;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
